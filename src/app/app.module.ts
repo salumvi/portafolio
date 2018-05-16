@@ -1,10 +1,15 @@
+import {HttpModule} from '@angular/http';
 import { provideRoutes } from '@angular/router/public_api';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+
 // Rutas;
 // import { app_routing } from './app.routes';
 import { AppRoutingModule } from './/app-routing.module';
+
+// servicios
+import { InfoService } from './services/info.service';
 
 
 import { AppComponent } from './app.component';
@@ -26,9 +31,10 @@ import { PorfolioItemComponent } from './components/porfolio-item/porfolio-item.
   imports: [
     BrowserModule,
    // app_routing,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpModule
   ],
-  providers: [],
+  providers: [InfoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
