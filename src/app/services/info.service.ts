@@ -9,18 +9,16 @@ import { Injectable } from '@angular/core';
 export class InfoService {
 
   public infoPagina: any = {};
-  public infoEquipo: any = {};
+  public infoEquipo: any[] = [];
   public cargandoInfo = false;
   public cargandoInfoNosotros = false;
-  
-
   constructor( public http: Http) {
   this.cargaInfo();
 this.cargaSobreNosotros();
 
    }
 
-public cargaInfo(){
+public cargaInfo() {
   this.http.get('assets/data/info.pagina.json')
   .subscribe(data => {
     this.cargandoInfo = true;
@@ -29,11 +27,11 @@ public cargaInfo(){
 
 }
 
-public cargaSobreNosotros(){
+public cargaSobreNosotros() {
   this.http.get('https://paginaweb-d86a1.firebaseio.com/EQUIPO.json')
   .subscribe(data => {
     this.cargandoInfoNosotros = true;
-    console.log(data.json());
+    // console.log(data.json());
     this.infoEquipo = data.json();
   });
 

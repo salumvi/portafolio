@@ -1,5 +1,6 @@
 import { InfoService } from './services/info.service';
 import { Component } from '@angular/core';
+import { ProductosService } from './services/productos.service';
 
 
 @Component({
@@ -10,7 +11,8 @@ import { Component } from '@angular/core';
 export class AppComponent {
 
 
-  constructor(public _is: InfoService) {
+  constructor(public _is: InfoService,
+              public _ps: ProductosService) {
 
 
 
