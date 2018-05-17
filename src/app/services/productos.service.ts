@@ -14,13 +14,18 @@ cargando = true;
     this.cargarProductos();
   }
   public cargarProductos() {
-
+    this.cargando = true;
     if ( this.productos.length === 0 ) {
         this.http.get('https://paginaweb-d86a1.firebaseio.com/PRODUCTOS_IDX.json')
           .subscribe(data => {
-            console.log(data.json());
+
+           // setTimeout(() => {
+              console.log(data.json());
+              this.productos = data.json();
+              this.cargando = false;
+           // }, 2000);
         });
-        this.cargando = false;
+
 
     }
 
