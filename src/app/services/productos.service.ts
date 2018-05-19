@@ -8,11 +8,27 @@ import { Http } from '@angular/http';
 export class ProductosService {
 
 productos: any[] = [];
+productosSearch: any[] = [];
+producto: any[] = [];
 cargando = true;
 
   constructor(private http: Http) {
     this.cargarProductos();
   }
+
+public buscarProducto(termino: string) {
+  this.productosSearch = [];
+
+this.productos.forEach(prod => {
+
+   if ( prod.categoria.includes(termino) ) {
+     this.productosSearch.push(prod);
+   }
+});
+
+
+}
+
   public cargarProductos() {
     this.cargando = true;
     if ( this.productos.length === 0 ) {
@@ -20,7 +36,7 @@ cargando = true;
           .subscribe(data => {
 
            // setTimeout(() => {
-              console.log(data.json());
+              // console.log(data.json());
               this.productos = data.json();
               this.cargando = false;
            // }, 2000);
@@ -30,5 +46,12 @@ cargando = true;
     }
 
 }
+
+public cargarProducto (codigo: string) {
+  const url = `https://paginaweb-d86a1.firebaseio.com/PRODUCTOS/${codigo}.json`;
+return this.http.get(url);
+
+}
+
 
 }
